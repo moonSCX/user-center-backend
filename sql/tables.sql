@@ -4,24 +4,20 @@ create database if not exists user_center;
 
 use user_center;
 
-DROP TABLE IF EXISTS `user`;
+drop table if exists user;
 
-CREATE TABLE if not exists `user`
+create table if not exists user
 (
-    id    BIGINT      NOT NULL COMMENT '主键ID',
-    name  VARCHAR(30) NULL DEFAULT NULL COMMENT '姓名',
-    age   INT         NULL DEFAULT NULL COMMENT '年龄',
-    email VARCHAR(50) NULL DEFAULT NULL COMMENT '邮箱',
-    PRIMARY KEY (id)
-);
-
-DELETE
-FROM `user`;
-
-INSERT INTO `user` (id, name, age, email)
-VALUES (1, 'Jone', 18, 'test1@baomidou.com'),
-       (2, 'Jack', 20, 'test2@baomidou.com'),
-       (3, 'Tom', 28, 'test3@baomidou.com'),
-       (4, 'Sandy', 21, 'test4@baomidou.com'),
-       (5, 'Billie', 24, 'test5@baomidou.com');
-
+    id           bigint unsigned primary key auto_increment comment 'id,主键',
+    username     varchar(128)  null comment '用户名',
+    user_account varchar(128)  null unique comment '账号',
+    password     varchar(512)  not null comment '密码',
+    gender       tinyint unsigned default 1 comment '性别，1-男 0-女',
+    img_url      varchar(1024) null comment '头像地址',
+    phone        varchar(128)  null unique comment '电话号',
+    email        varchar(128)  null unique comment '邮箱',
+    status       tinyint unsigned default 0 comment '用户状态，0-正常 其他后面再定义',
+    create_time  datetime comment '创建时间',
+    update_time  datetime comment '更新时间',
+    is_delete    tinyint unsigned default 0 comment '逻辑删除，0-未删除 1-已删除'
+) comment '用户表';
