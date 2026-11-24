@@ -2,6 +2,7 @@ package com.moon.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.time.LocalDateTime;
@@ -56,6 +57,11 @@ public class User {
     private String email;
 
     /**
+     * 用户角色，0 - 普通用户，1 - 管理员
+     */
+    private Integer role;
+
+    /**
      * 用户状态，0-正常 其他后面再定义
      */
     private Integer status;
@@ -73,5 +79,6 @@ public class User {
     /**
      * 逻辑删除，0-未删除 1-已删除
      */
+    @TableLogic
     private Integer isDelete;
 }

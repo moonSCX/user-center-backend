@@ -1,5 +1,6 @@
 package com.moon.service;
 
+import com.moon.controller.UserController;
 import com.moon.domain.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,9 @@ class UserServiceTest {
         System.out.println(newPwd);
     }
 
+    /**
+     * 测试用户注册
+     */
     @Test
     void testUserRegister(){
         Long id = userService.userRegister("moon1", "12345678", "12345678");

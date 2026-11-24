@@ -16,6 +16,7 @@ create table if not exists user
     img_url      varchar(1024) null comment '头像地址',
     phone        varchar(128)  null unique comment '电话号',
     email        varchar(128)  null unique comment '邮箱',
+    role         tinyint unsigned   default 0 comment '用户角色。0-普通用户 1-管理员',
     status       tinyint unsigned default 0 comment '用户状态，0-正常 其他后面再定义',
     create_time  datetime comment '创建时间',
     update_time  datetime comment '更新时间',
