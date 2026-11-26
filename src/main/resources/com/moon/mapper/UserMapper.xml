@@ -3,25 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.moon.mapper.UserMapper">
-
-    <resultMap id="BaseResultMap" type="com.moon.domain.entity.User">
-            <id property="id" column="id" />
-            <result property="username" column="username" />
-            <result property="userAccount" column="user_account" />
-            <result property="password" column="password" />
-            <result property="gender" column="gender" />
-            <result property="imgUrl" column="img_url" />
-            <result property="phone" column="phone" />
-            <result property="email" column="email" />
-            <result property="status" column="status" />
-            <result property="createTime" column="create_time" />
-            <result property="updateTime" column="update_time" />
-            <result property="isDelete" column="is_delete" />
-    </resultMap>
-
-    <sql id="Base_Column_List">
-        id,username,user_account,password,gender,img_url,
-        phone,email,status,create_time,update_time,
-        is_delete
-    </sql>
+    <select id="search" resultType="com.moon.domain.vo.UserVO">
+        select id, username, user_account, gender, img_url, phone, email, role, status, create_time, update_time from user
+        <where>
+            <if test="username!=''||username!=null">username=#{username}</if>
+        </where>
+    </select>
 </mapper>

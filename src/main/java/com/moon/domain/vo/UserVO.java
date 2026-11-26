@@ -8,6 +8,11 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * 用户视图类，主要用于用户数据脱敏
+ *
+ * @author moon
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

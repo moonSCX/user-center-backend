@@ -5,6 +5,7 @@ import com.moon.domain.entity.User;
 import com.moon.domain.vo.UserVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 用户服务业务层
@@ -31,4 +32,12 @@ public interface UserService extends IService<User> {
      * @return            用户信息（脱敏）
      */
     UserVO userLogin(String userAccount, String pwd, HttpServletRequest request);
+
+    /**
+     * 根据用户名查询用户（仅管理员）
+     *
+     * @param username 用户名
+     * @return         脱敏后的用户信息列表
+     */
+    List<UserVO> searchUserByName(String username);
 }

@@ -1,5 +1,8 @@
 server:
   port: 8081
+  # 接口路径前统一加入前缀 /api
+  servlet:
+    context-path: /api
 
 spring:
   datasource:

@@ -78,13 +78,12 @@ public class UserController {
      * @return 返回查询的用户列表
      */
     @GetMapping("/search")
-    public List<User> searchUserByName(@RequestParam String username, HttpServletRequest request) {
+    public List<UserVO> searchUserByName(@RequestParam String username, HttpServletRequest request) {
         // 仅管理员可查询
         if (!isAdmin(request)){
             return new ArrayList<>();
         }
-        return userService.list(new LambdaQueryWrapper<User>()
-                .like(username != null, User::getUsername, username));
+        return userService.searchUserByName(username);
     }
 
     /**
@@ -94,7 +93,7 @@ public class UserController {
      * @return 返回是否删除成功
      */
     @DeleteMapping("/delete")
-    public boolean deleteById(@RequestBody Long id, HttpServletRequest request) {
+    public boolean deleteById(@RequestParam Long id, HttpServletRequest request) {
         // 仅管理员可删除用户
         if (!isAdmin(request)){
             return false;
@@ -114,8 +113,8 @@ public class UserController {
      */
     private boolean isAdmin(HttpServletRequest request){
         Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
-        User user = (User) userObj;
-        if (user == null || !Objects.equals(user.getRole(), ADMIN_ROLE)) {
+        UserVO userVO = (UserVO) userObj;
+        if (userVO == null || !Objects.equals(userVO.getRole(), ADMIN_ROLE)) {
             return false;
         }
         return true;

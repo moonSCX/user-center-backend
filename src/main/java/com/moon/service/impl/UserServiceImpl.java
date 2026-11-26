@@ -14,6 +14,8 @@ import org.springframework.util.DigestUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -137,6 +139,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return userVO;
         }
         return null;
+    }
+
+    /**
+     * 根据用户名查询用户（仅管理员）
+     *
+     * @param username 用户名
+     * @return 脱敏后的用户信息列表
+     */
+    @Override
+    public List<UserVO> searchUserByName(String username) {
+        return userMapper.search(username);
     }
 }
 
